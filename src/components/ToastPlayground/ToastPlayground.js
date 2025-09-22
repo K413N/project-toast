@@ -43,7 +43,7 @@ function ToastPlayground() {
     setVariant(VARIANT_OPTIONS[0])
   };
 
-  function handleDismiss (id) {
+  function handleDismiss(id) {
     const nextToasts = toasts.filter(toast => {
       return toast.id !== id
     })
