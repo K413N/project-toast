@@ -12,7 +12,7 @@ function ToastShelf({ toasts, handleDismiss }) {
           toasts.map((element) => (
         <li key={element.id}>
           <Toast 
-          id={toasts.id}
+          id={element.id}
           variant={element.variant} 
           message={element.message}
           handleDismiss={handleDismiss}
