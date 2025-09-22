@@ -37,6 +37,9 @@ function Toast({ variant, message, id }) {
         <Info size={24} />
       </div>
       <p className={styles.content}>
+        <VisuallyHidden>
+          {variant} -
+        </VisuallyHidden>
         {message}
       </p>
       <button onClick={() => dismissToast(id)} className={styles.closeButton}>
