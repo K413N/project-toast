@@ -29,9 +29,27 @@ function ToastPlayground() {
     setMessage(event.target.value);
   };
 
-  const handlePop = () => {
-    // setIsToastPopped(true)
+  const handleCreateToast = (event) => {
+    event.preventDefault()
+    const nextToasts = [...toasts,
+      {
+        id: crypto.randomUUID(),
+        message,
+        variant,
+      }
+    ]
+    setToasts(nextToasts)
+    setMessage('')
+    setVariant(VARIANT_OPTIONS[0])
   };
+
+  function handleDismiss (id) {
+    const nextToasts = toasts.filter(toast => {
+      return toast.id !== id
+    })
+    setToasts(nextToasts)
+  }
+
   return (
     <div className={styles.wrapper}>
       <header>
@@ -39,9 +57,9 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-        <ToastShelf toasts={toasts} />
+        <ToastShelf toasts={toasts} handleDismiss={handleDismiss}/>
 
-      <div className={styles.controlsWrapper}>
+      <form className={styles.controlsWrapper} onSubmit={handleCreateToast}>
         <div className={styles.row}>
           <label
             htmlFor="message"
@@ -86,10 +104,10 @@ function ToastPlayground() {
         <div className={styles.row}>
           <div className={styles.label} />
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            <Button onClick={handlePop}>Pop Toast!</Button>
+            <Button>Pop Toast!</Button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

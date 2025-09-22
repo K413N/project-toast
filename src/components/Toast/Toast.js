@@ -25,17 +25,9 @@ const STYLES_BY_VARIANT = {
   error: styles.error,
 }
 
-function Toast({ variant, message, }) {
+function Toast({ variant, message, handleDismiss, id }) {
   
 
-  const styleEffect = React.useEffect(() => {
-    console.log(STYLES_BY_VARIANT)
-  }, [variant])
-
-  const handleClose = () => {
-    // setIsToastPopped(false)
-    console.log("Closed!")
-  }
 
   return (
     <div className={`${styles.toast} ${STYLES_BY_VARIANT[variant]}`}>
@@ -45,7 +37,7 @@ function Toast({ variant, message, }) {
       <p className={styles.content}>
         {message}
       </p>
-      <button onClick={handleClose} className={styles.closeButton}>
+      <button onClick={handleDismiss(id)} className={styles.closeButton}>
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
